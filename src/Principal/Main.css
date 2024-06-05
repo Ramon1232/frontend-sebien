@@ -91,3 +91,15 @@ form {
     margin-top: 50px;
     color: rgb(165, 165, 43);
 }
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Ajusta la altura según tus necesidades */
+}
+
+.loading-message {
+    font-size: 18px;
+    color: #333;
+}
