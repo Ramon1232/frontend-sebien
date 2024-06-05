@@ -15,7 +15,7 @@ function Main() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.get(`http://localhost:3000/beneficiarios/curp/${curpInput}`);
+            const response = await axios.get(`https://backend-sebien.onrender.com/beneficiarios/curp/${curpInput}`);
             if (response.data && response.data.length > 0) {
                 setDatos({
                     [response.data[0].beneficiarioId]: response.data[0]
