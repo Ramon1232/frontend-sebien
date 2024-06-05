@@ -7,7 +7,7 @@ function Main() {
     const [curpInput, setCurpInput] = useState('');
     const [mostrarDatos, setMostrarDatos] = useState(false);
     const [error, setError] = useState('');
-    const [cargando, setCargando] = useState(false); // Estado para la carga
+    const [cargando, setCargando] = useState(false);
 
     const handleCurpChange = (event) => {
         setCurpInput(event.target.value);
@@ -15,7 +15,7 @@ function Main() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setCargando(true); // Comenzar la carga
+        setCargando(true);
 
         try {
             const response = await axios.get(`https://backend-sebien.onrender.com/beneficiarios/curp/${curpInput}`);
@@ -25,7 +25,7 @@ function Main() {
                 });
                 setCurpInput('');
                 setMostrarDatos(true);
-                setError(''); // Clear any previous error
+                setError('');
             } else {
                 setError('CURP no encontrada. Por favor, verifique e intente nuevamente.');
                 setMostrarDatos(false);
@@ -35,7 +35,7 @@ function Main() {
             setError('CURP no encontrada. Por favor, verifique e intente nuevamente.');
             setMostrarDatos(false);
         } finally {
-            setCargando(false); // Detener la carga después de que la solicitud haya finalizado
+            setCargando(false);
         }
     };
 
@@ -46,15 +46,15 @@ function Main() {
             <h2 className="title">Consulta tu estatus de solicitante</h2>
             <form onSubmit={handleSubmit}>
                 <label className="label">
-                    Ingrese tu CURP:
+                    Ingresa tu CURP:
                     <input type="text" value={curpInput} onChange={handleCurpChange} className="input" />
                 </label>
                 <button type="submit" className="button">Revisar</button>
             </form>
-            {error && <div className="error-message">{error}</div>} {/* Mostrar mensaje de error */}
+            {error && <div className="error-message">{error}</div>}
             {cargando && (
                 <div className="loading-container">
-                    <div className="loading-message">Cargando...</div>
+                    <div className="loading-message">Cargando... Esepera un momento</div>
                 </div>
             )} {/* Mostrar mensaje de carga */}
             {mostrarDatos && (
