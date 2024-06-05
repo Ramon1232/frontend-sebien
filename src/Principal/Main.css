@@ -12,7 +12,7 @@
 .title {
     text-align: center;
     font-size: 32px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .label {
@@ -68,11 +68,26 @@ form {
 
 .table th {
     background-color: #f0f0f0;
-    text-align: left;
+    text-align: center;
 }
 
 .error-message {
     color: red;
     text-align: center;
     margin-top: 10px;
+}
+
+.statuslabel {
+    margin-top: 50px;
+    text-align: center;
+    background-color: #0056b3;
+}
+
+.labelstatus {
+    text-align: center;
+}
+
+.labelestado {
+    margin-top: 50px;
+    color: rgb(165, 165, 43);
 }

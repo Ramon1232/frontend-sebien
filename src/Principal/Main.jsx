@@ -38,10 +38,10 @@ function Main() {
 
     return (
         <div className="container">
-            <h2 className="title">Revisión de CURP</h2>
+            <h2 className="title">Consulta tu estatus de solicitante</h2>
             <form onSubmit={handleSubmit}>
                 <label className="label">
-                    Ingrese CURP:
+                    Ingrese tu CURP:
                     <input type="text" value={curpInput} onChange={handleCurpChange} className="input" />
                 </label>
                 <button type="submit" className="button">Revisar</button>
@@ -69,7 +69,9 @@ function Main() {
                             ))}
                         </tbody>
                     </table>
-                    <h3>Estado: {estatus}</h3> {/* Mostrar el estado debajo de la tabla */}
+                    <div className='labelstatus'>
+                        <h1 className='labelestado'>Estado: {estatus}</h1> 
+                    </div>
                 </React.Fragment>
             )}
         </div>

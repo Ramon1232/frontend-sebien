@@ -1,7 +1,11 @@
-import React from 'react';
-import Main from './Principal/Main'; // Ajusta la ruta según sea necesario
+import React, { useEffect } from 'react';
+import Main from './Principal/Main';
 
 function App() {
+  useEffect(() => {
+    document.title = "Consulta estatus";
+  }, []);
+
   return (
     <div className="App">
       <main>
@@ -12,3 +16,4 @@ function App() {
 }
 
 export default App;
+
