@@ -1,11 +1,11 @@
 .container {
-    max-width: 60%;
+    max-width: 80%;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ffffff;
     border-radius: 5px;
     background-color: #ffffff;
-    margin-top: 80px;
+    margin-top: 10px;
     justify-content: center;
 }
 
@@ -89,7 +89,7 @@ form {
 
 .labelestado {
     margin-top: 50px;
-    color: rgb(165, 165, 43);
+    color: rgb(110, 172, 223);
 }
 
 .loading-container {
@@ -102,4 +102,14 @@ form {
 .loading-message {
     font-size: 18px;
     color: #333;
+}
+
+.program-info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.program-image {
+    margin-top: 10px;
+    width: 150px; /* Ajusta el tamaño según sea necesario */
 }

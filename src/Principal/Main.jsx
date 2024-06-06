@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Main.css';
+import fondoImage from '../images/logoFondo.jpeg';
+import cuidandoImage from '../images/logoCuidando.jpeg';
 
 function Main() {
     const [datos, setDatos] = useState({});
@@ -39,6 +41,7 @@ function Main() {
         }
     };
 
+    const programa = Object.keys(datos).length > 0 ? datos[Object.keys(datos)[0]].programa : '';
     const estatus = Object.keys(datos).length > 0 ? datos[Object.keys(datos)[0]].estatus : '';
 
     return (
@@ -56,7 +59,7 @@ function Main() {
                 <div className="loading-container">
                     <div className="loading-message">Cargando... Esepera un momento</div>
                 </div>
-            )} {/* Mostrar mensaje de carga */}
+            )}
             {mostrarDatos && (
                 <React.Fragment>
                     <table className="table">
@@ -66,6 +69,7 @@ function Main() {
                                 <th>CURP</th>
                                 <th>Nombre completo</th>
                                 <th>Estatus</th>
+                                <th>Programa</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,6 +79,7 @@ function Main() {
                                     <td>{datos[beneficiarioId].curp}</td>
                                     <td>{datos[beneficiarioId].nombre}</td>
                                     <td>{datos[beneficiarioId].estatus}</td>
+                                    <td>{datos[beneficiarioId].programa}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -82,6 +87,13 @@ function Main() {
                     <div className='labelstatus'>
                         <h1 className='labelestado'>Estado: {estatus}</h1> 
                     </div>
+                    {(programa === 'FONDO DE RECOMPENSA PARA EL BIENESTAR 2024' || programa === 'CUIDANDO TU BIENESTAR 2024') && (
+                        <div className="program-info">
+                            <h3>Programa: {programa}</h3>
+                            <img className='program-image'
+                            src={programa === 'FONDO DE RECOMPENSA PARA EL BIENESTAR 2024' ? fondoImage : cuidandoImage} alt={programa} />
+                        </div>
+                    )}
                 </React.Fragment>
             )}
         </div>
