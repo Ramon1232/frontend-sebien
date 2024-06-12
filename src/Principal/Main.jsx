@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Main.css';
-import fondoImage from '../images/logoFondo.jpeg';
-import cuidandoImage from '../images/logoCuidando.jpeg';
 
 function Main() {
-    const [datos, setDatos] = useState({});
+    const [datos, setDatos] = useState([]);
     const [curpInput, setCurpInput] = useState('');
     const [mostrarDatos, setMostrarDatos] = useState(false);
     const [error, setError] = useState('');
@@ -22,9 +20,8 @@ function Main() {
         try {
             const response = await axios.get(`https://backend-sebien.onrender.com/beneficiarios/curp/${curpInput}`);
             if (response.data && response.data.length > 0) {
-                setDatos({
-                    [response.data[0].beneficiarioId]: response.data[0]
-                });
+                setDatos(response.data);
+                console.log(response.data);
                 setCurpInput('');
                 setMostrarDatos(true);
                 setError('');
@@ -41,9 +38,6 @@ function Main() {
         }
     };
 
-    const programa = Object.keys(datos).length > 0 ? datos[Object.keys(datos)[0]].programa : '';
-    const estatus = Object.keys(datos).length > 0 ? datos[Object.keys(datos)[0]].estatus : '';
-
     return (
         <div className="container">
             <h2 className="title">Consulta tu estatus de solicitante</h2>
@@ -57,7 +51,7 @@ function Main() {
             {error && <div className="error-message">{error}</div>}
             {cargando && (
                 <div className="loading-container">
-                    <div className="loading-message">Cargando... Esepera un momento</div>
+                    <div className="loading-message">Cargando... Espera un momento</div>
                 </div>
             )}
             {mostrarDatos && (
@@ -73,27 +67,17 @@ function Main() {
                             </tr>
                         </thead>
                         <tbody>
-                            {Object.keys(datos).map(beneficiarioId => (
-                                <tr key={beneficiarioId}>
-                                    <td>{datos[beneficiarioId].folio}</td>
-                                    <td>{datos[beneficiarioId].curp}</td>
-                                    <td>{datos[beneficiarioId].nombre}</td>
-                                    <td>{datos[beneficiarioId].estatus}</td>
-                                    <td>{datos[beneficiarioId].programa}</td>
+                            {datos.map((beneficiario) => (
+                                <tr key={beneficiario.beneficiarioId}>
+                                    <td>{beneficiario.folio}</td>
+                                    <td>{beneficiario.curp}</td>
+                                    <td>{beneficiario.nombre}</td>
+                                    <td>{beneficiario.estatus}</td>
+                                    <td>{beneficiario.programa}</td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
-                    <div className='labelstatus'>
-                        <h1 className='labelestado'>Estado: {estatus}</h1> 
-                    </div>
-                    {(programa === 'FONDO DE RECOMPENSA PARA EL BIENESTAR 2024' || programa === 'CUIDANDO TU BIENESTAR 2024') && (
-                        <div className="program-info">
-                            <h3>Programa: {programa}</h3>
-                            <img className='program-image'
-                            src={programa === 'FONDO DE RECOMPENSA PARA EL BIENESTAR 2024' ? fondoImage : cuidandoImage} alt={programa} />
-                        </div>
-                    )}
                 </React.Fragment>
             )}
         </div>

@@ -113,3 +113,9 @@ form {
     margin-top: 10px;
     width: 150px; /* Ajusta el tamaño según sea necesario */
 }
+
+.selectPrograma {
+
+    margin-bottom: 10px;
+    justify-content: center;
+}
