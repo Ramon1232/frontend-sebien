@@ -15,6 +15,13 @@ function Main() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        if (!curpInput.trim()) {
+            setError('Por favor, ingresa una CURP.');
+            setMostrarDatos(false);
+            return;
+        }
+
         setCargando(true);
 
         try {
